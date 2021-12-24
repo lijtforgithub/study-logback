@@ -1,0 +1,34 @@
+<configuration>
+
+    // ${CONTEXT_NAME} ${HOSTNAME}
+    <contextName>${APP_NAME:-xxoo}</contextName>
+
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+
+    <property name="USER_HOME" value="/home/logs" />
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %logger{36} - %msg%n" />
+    <define name="additivity" class="com.ljt.study.CustomPropertyDefiner" />
+
+    <timestamp key="bySecond" datePattern="yyyyMMddHHmmss" timeReference="contextBirth"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %contextName [%t] %level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${USER_HOME}/${bySecond}.txt</file>
+    </appender>
+
+    <logger name="com.ljt.study" additivity="${additivity}">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

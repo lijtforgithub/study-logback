@@ -1,0 +1,5 @@
+<configuration>
+    <!-- Appender 累加 -->
+<!--    <include resource="logback-additivity.xml"/>-->
+    <include resource="logback-time_rolling.xml"/>
+</configuration>
