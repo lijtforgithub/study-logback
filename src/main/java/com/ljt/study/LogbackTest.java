@@ -13,22 +13,37 @@ import org.slf4j.LoggerFactory;
  * @author LiJingTang
  * @date 2021-12-23 14:33
  */
-public class HelloWorld {
+public class LogbackTest {
 
     @Test
     public void helloWorld() {
-        Logger logger = LoggerFactory.getLogger("chapters.introduction.HelloWorld1");
-        logger.debug("Hello world.");
+        Logger log = LoggerFactory.getLogger("hello-world");
+        log.debug("Hello Logback");
+    }
+
+    @Test
+    public void singleton() {
+        Logger log1 = LoggerFactory.getLogger(LogbackTest.class);
+        Logger log2 = LoggerFactory.getLogger(LogbackTest.class);
+        assert log1 == log2;
     }
 
     @Test
     public void statusPrinter() {
-        Logger logger = LoggerFactory.getLogger("chapters.introduction.HelloWorld2");
-        logger.debug("Hello world.");
+        Logger log = LoggerFactory.getLogger("status-printer");
 
-        // print internal state
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         StatusPrinter.print(lc);
+
+        log.debug("Hello StatusPrinter");
+    }
+
+    @Test
+    public void statusManager() {
+        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        StatusManager statusManager = lc.getStatusManager();
+        OnConsoleStatusListener onConsoleListener = new OnConsoleStatusListener();
+        statusManager.add(onConsoleListener);
     }
 
     @Test
@@ -56,19 +71,15 @@ public class HelloWorld {
     }
 
     @Test
-    public void singleton() {
-        Logger log1 = LoggerFactory.getLogger(HelloWorld.class);
-        Logger log2 = LoggerFactory.getLogger(HelloWorld.class);
-
-        System.out.println(log1 == log2);
+    public void additivity() {
+        Logger log = LoggerFactory.getLogger("additivity");
+        log.info("Appender 默认时累加的 可以设置additivity=\"false\"");
     }
 
     @Test
-    public void statusManager() {
-        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-        StatusManager statusManager = lc.getStatusManager();
-        OnConsoleStatusListener onConsoleListener = new OnConsoleStatusListener();
-        statusManager.add(onConsoleListener);
+    public void contextName() {
+        Logger log = LoggerFactory.getLogger("contextName");
+        log.info("contextName define timestamp");
     }
 
 }

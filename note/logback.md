@@ -90,6 +90,12 @@ ${id:-${userid}}
       </root>
     </then>
 </if>
+
+<dependency>
+    <groupId>org.codehaus.janino</groupId>
+    <artifactId>janino</artifactId>
+    <version>3.1.6</version>
+</dependency>
 ```
 8. include 目标文件必须将其元素嵌套在一个`<included>`元素内
 ```

@@ -1,5 +1,33 @@
 <configuration>
+
+    <property name="log_path" value="/tmp/logs/study-logback/" />
+    <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %logger{36} - %msg%n" />
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log_pattern}</pattern>
+            <!-- 在日志的顶部插入日志输出的模式 -->
+            <outputPatternAsHeader>true</outputPatternAsHeader>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="stdout" />
+    </root>
+
     <!-- Appender 累加 -->
-<!--    <include resource="logback-additivity.xml"/>-->
+    <include resource="logback-additivity.xml"/>
+    <include resource="logback-contextName.xml"/>
+
     <include resource="logback-time_rolling.xml"/>
+    <include resource="logback-time_size.xml"/>
+
+
+    <if condition='isDefined("DEBUG")'>
+        <then>
+            <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener">
+                <prefix>调试日志：</prefix>
+            </statusListener>
+        </then>
+    </if>
 </configuration>

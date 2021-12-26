@@ -1,0 +1,22 @@
+<included>
+
+    <property name="log_file" value="${log_path}time-size" />
+
+    <appender name="file_SizeAndTimeBasedRollingPolicy" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file}.log</file>
+        <encoder>
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log_file}_%d{yyyy-MM-dd-HH-mm}.%i.log</fileNamePattern>
+            <maxHistory>5</maxHistory>
+            <maxFileSize>1MB</maxFileSize>
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="SizeAndTimeBasedRollingPolicy" additivity="false">
+        <appender-ref ref="file_SizeAndTimeBasedRollingPolicy" />
+    </logger>
+
+</included>

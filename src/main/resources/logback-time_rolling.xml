@@ -1,20 +1,22 @@
-<configuration>
+<included>
 
-    <property name="LOG_FILE" value="/home/logs/logback-time.txt" />
-    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %logger{36} - %msg%n" />
+    <property name="log_file" value="${log_path}time-rolling" />
 
-    <appender name="FILE" class="ch.qos.logback.core.RollingFileAppender">
-        <file>${LOG_FILE}</file>
+    <appender name="file_TimeBasedRollingPolicy" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_file}.log</file>
         <encoder>
-            <pattern>${LOG_PATTERN}</pattern>
+            <pattern>${log_pattern}</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_FILE}_%d{yyyyMMddHHmm}</fileNamePattern>
+            <fileNamePattern>${log_file}_%d{yyyy-MM-dd-HHmm}.log</fileNamePattern>
             <maxHistory>5</maxHistory>
+            <totalSizeCap>100MB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
     </appender>
 
-    <root level="debug">
-        <appender-ref ref="FILE" />
-    </root>
-</configuration>
+    <logger name="TimeBasedRollingPolicy" additivity="false">
+        <appender-ref ref="file_TimeBasedRollingPolicy" />
+    </logger>
+
+</included>
