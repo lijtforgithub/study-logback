@@ -25,7 +25,7 @@ public class LayoutTest {
 
         PatternLayoutEncoder encoder = new PatternLayoutEncoder();
         encoder.setContext(loggerContext);
-        encoder.setPattern("%-5level [%thread]: %message%n");
+        encoder.setPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %10.20C%L - %msg%n");
         encoder.start();
 
         ConsoleAppender<ILoggingEvent> appender = new ConsoleAppender<>();
@@ -37,6 +37,8 @@ public class LayoutTest {
 
         rootLogger.debug("Message 1");
         rootLogger.warn("Message 2");
+
+        rootLogger.error("打印异常", new NullPointerException("空指针"));
     }
 
 }
