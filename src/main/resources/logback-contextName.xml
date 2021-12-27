@@ -1,0 +1,20 @@
+<included>
+
+    // ${CONTEXT_NAME} ${HOSTNAME}
+    <contextName>${APP_NAME:-xxoo}</contextName>
+
+    <define name="define" class="com.ljt.study.CustomPropertyDefiner" />
+
+    <timestamp key="bySecond" datePattern="yyyyMMddHHmmss" timeReference="contextBirth"/>
+
+    <appender name="stdout_context" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%contextName ${bySecond}] ${log_pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="contextName" additivity="${define}">
+        <appender-ref ref="stdout_context" />
+    </logger>
+
+</included>

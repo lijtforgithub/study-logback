@@ -1,24 +1,14 @@
 <included>
-    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %logger{36} - %msg%n" />
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="stdout_additivity" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[ROOT] ${LOG_PATTERN}</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="STDOUT_ADD" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>[ADD ] ${LOG_PATTERN}</pattern>
+            <pattern>[additivity] ${log_pattern}</pattern>
         </encoder>
     </appender>
 
     <!-- 默认累加 additivity="false" -->
-    <logger name="com.ljt.study">
-        <appender-ref ref="STDOUT_ADD" />
+    <logger name="additivity">
+        <appender-ref ref="stdout_additivity" />
     </logger>
 
-    <root level="debug">
-        <appender-ref ref="STDOUT" />
-    </root>
 </included>
