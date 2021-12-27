@@ -3,7 +3,6 @@ package com.ljt.study;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy;
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class RollingFileAppenderTest {
 
-    @BeforeClass
-    public static void beforeEach () {
+    static {
         System.setProperty(Level.DEBUG.levelStr, Boolean.TRUE.toString());
     }
 

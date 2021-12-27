@@ -1,7 +1,7 @@
 <configuration>
 
     <property name="log_path" value="/tmp/logs/study-logback/" />
-    <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %logger{36} - %msg%n" />
+    <property name="log_pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%thread] %c{36} %10.20C%L - %msg%n" />
 
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
