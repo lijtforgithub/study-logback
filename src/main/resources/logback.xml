@@ -22,6 +22,10 @@
     <include resource="logback-time_rolling.xml"/>
     <include resource="logback-time_size.xml"/>
 
+    <include resource="logback-simpleFilter.xml"/>
+    <include resource="logback-levelFilter.xml"/>
+    <include resource="logback-thresholdFilter.xml"/>
+
 
     <if condition='isDefined("DEBUG")'>
         <then>

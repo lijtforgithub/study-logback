@@ -1,0 +1,18 @@
+<included>
+
+    <appender name="stdout_LevelFilter" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="LevelFilter" additivity="false">
+        <appender-ref ref="stdout_LevelFilter" />
+    </logger>
+
+</included>

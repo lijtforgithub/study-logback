@@ -1,0 +1,14 @@
+<included>
+
+    <appender name="stdout_SimpleFilter" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log_pattern}</pattern>
+        </encoder>
+        <filter class="com.ljt.study.impl.SimpleFilter" />
+    </appender>
+
+    <logger name="SimpleFilter" additivity="false">
+        <appender-ref ref="stdout_SimpleFilter" />
+    </logger>
+
+</included>

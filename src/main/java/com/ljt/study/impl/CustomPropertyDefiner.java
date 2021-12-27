@@ -1,4 +1,4 @@
-package com.ljt.study;
+package com.ljt.study.impl;
 
 import ch.qos.logback.core.PropertyDefinerBase;
 

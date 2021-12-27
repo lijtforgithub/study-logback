@@ -112,3 +112,7 @@ ${id:-${userid}}
 ```
 9. `<timestamp key="bySecond" datePattern="yyyyMMddHHmmss" timeReference="contextBirth"/>`  
 timeReference属性是可选的。默认是配置文件的解析时间，即当前时间。但是，在某些情况下，使用上下文创建时间可能会很有用。这可以通过将timeReference设置为"contextBirth"来实现。
+10. Filter
+    - DENY 立即抛弃 不再经过剩余过滤器
+    - NEUTRAL 下一个过滤器接着处理
+    - ACCEPt 立即处理 不再经过剩余过滤器
